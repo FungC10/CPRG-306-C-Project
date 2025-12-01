@@ -6,7 +6,7 @@ import {
   OpenMeteoGeocodingResult,
   OpenMeteoForecastResponse 
 } from './types';
-import { getOpenMeteoWeatherIcon, getOpenMeteoWeatherEmoji, getOpenMeteoWeatherDescription, isOpenMeteoDayTime } from './weatherIconOpenMeteo';
+import { getOpenMeteoWeatherIcon, getOpenMeteoWeatherDescription, isOpenMeteoDayTime } from './weatherIconOpenMeteo';
 import { getSnapshot, saveSnapshot, isSnapshotRecent } from './storage';
 
 const GEOCODING_BASE_URL = 'https://geocoding-api.open-meteo.com/v1';
@@ -236,44 +236,4 @@ function getWeatherMain(code: number): string {
   };
   
   return weatherMap[code] || 'Unknown';
-}
-
-function getWeatherDescription(code: number): string {
-  const descriptionMap: Record<number, string> = {
-    0: 'Clear sky',
-    1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
-    45: 'Fog', 48: 'Depositing rime fog',
-    51: 'Light drizzle', 53: 'Moderate drizzle', 55: 'Dense drizzle',
-    56: 'Light freezing drizzle', 57: 'Dense freezing drizzle',
-    61: 'Slight rain', 63: 'Moderate rain', 65: 'Heavy rain',
-    66: 'Light freezing rain', 67: 'Heavy freezing rain',
-    71: 'Slight snow', 73: 'Moderate snow', 75: 'Heavy snow',
-    77: 'Snow grains',
-    80: 'Slight rain showers', 81: 'Moderate rain showers', 82: 'Violent rain showers',
-    85: 'Slight snow showers', 86: 'Heavy snow showers',
-    95: 'Thunderstorm',
-    96: 'Thunderstorm with slight hail', 99: 'Thunderstorm with heavy hail'
-  };
-  
-  return descriptionMap[code] || 'Unknown';
-}
-
-function getWeatherIcon(code: number): string {
-  const iconMap: Record<number, string> = {
-    0: '01d',
-    1: '02d', 2: '03d', 3: '04d',
-    45: '50d', 48: '50d',
-    51: '09d', 53: '09d', 55: '09d',
-    56: '09d', 57: '09d',
-    61: '10d', 63: '10d', 65: '10d',
-    66: '10d', 67: '10d',
-    71: '13d', 73: '13d', 75: '13d',
-    77: '13d',
-    80: '09d', 81: '09d', 82: '09d',
-    85: '13d', 86: '13d',
-    95: '11d',
-    96: '11d', 99: '11d'
-  };
-  
-  return iconMap[code] || '01d';
 }
