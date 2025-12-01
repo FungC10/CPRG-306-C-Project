@@ -52,8 +52,6 @@ const ForecastList = dynamic(() => import('@/components/ForecastList'), {
   )
 });
 
-type AppState = 'empty' | 'loading' | 'error' | 'success';
-
 export default function Home() {
   const strings = useStrings();
   const [selectedCity, setSelectedCity] = useState<GeoPoint | null>(null);
