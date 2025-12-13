@@ -11,6 +11,7 @@ import { getJSON } from '@/lib/storage';
 import { parseCityFromUrl } from '@/lib/cityUtils';
 import SearchBar from '@/components/SearchBar';
 import UnitToggle from '@/components/UnitToggle';
+import ThemeToggle from '@/components/ThemeToggle';
 import CurrentCard from '@/components/CurrentCard';
 import ForecastList from '@/components/ForecastList';
 import EmptyState from '@/components/EmptyState';
@@ -103,36 +104,67 @@ export default function CityPage({ params }: CityPageProps) {
   else if (hasData) appState = 'success';
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-3xl font-bold text-cyan-400 mb-2">WeatherFlow</h1>
-              <p className="text-slate-400">
-                {selectedCity ? `Weather in ${selectedCity.name}` : 'City Weather'}
-              </p>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-all duration-500">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 dark:bg-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+      </div>
+
+      {/* Header - Matching main page structure */}
+      <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm safari-sticky-fix">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
+            {/* Logo with back button */}
             <button
               onClick={handleBackToHome}
-              className="flex items-center space-x-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors"
+              className="flex items-center space-x-4 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 rounded-lg p-2 -m-2"
+              aria-label="Back to main page"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              <span>Back to Search</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <svg
+                  className="w-7 h-7 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  />
+                </svg>
+              </div>
+              <div className="text-left">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
+                  WeatherFlow
+                </h1>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  {selectedCity ? selectedCity.name : 'City Weather'}
+                </p>
+              </div>
             </button>
-          </div>
 
-          {/* Search and Controls */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <div className="flex-1">
-              <SearchBar onCitySelect={() => {}} disabled />
+            {/* Search and Controls */}
+            <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 w-full lg:w-auto">
+              <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3 w-full lg:w-auto">
+                <div className="w-full sm:w-80">
+                  <SearchBar onCitySelect={() => {}} disabled />
+                </div>
+                <div className="flex items-center space-x-3">
+                  <UnitToggle onChange={handleUnitsChange} />
+                  <ThemeToggle />
+                </div>
+              </div>
             </div>
-            <UnitToggle onChange={handleUnitsChange} />
           </div>
         </div>
+      </header>
+
+      <main className="relative z-10 min-h-screen" role="main">
+        <div className="container mx-auto px-6 py-8 max-w-4xl">
 
         {/* Content */}
         {appState === 'empty' && (
@@ -193,7 +225,8 @@ export default function CityPage({ params }: CityPageProps) {
             </div>
           </div>
         )}
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

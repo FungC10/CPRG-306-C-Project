@@ -312,7 +312,7 @@ export default function SearchBar({
             aria-haspopup="listbox"
             aria-invalid={errors.query ? "true" : "false"}
             role="combobox"
-            className={`block w-full pl-10 pr-3 py-3 border rounded-2xl bg-white/80 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md focus:shadow-lg ${
+            className={`block w-full pl-10 pr-3 py-3 border rounded-2xl bg-white/80 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md focus:shadow-lg ${
               errors.query 
                 ? 'border-red-300 dark:border-red-500/50 focus:ring-red-400' 
                 : 'border-slate-300 dark:border-slate-600'
