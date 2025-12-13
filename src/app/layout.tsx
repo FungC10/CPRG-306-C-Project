@@ -46,6 +46,16 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
+                  // Detect Safari immediately (before React hydration)
+                  var ua = navigator.userAgent;
+                  var isAppleWebKit = /AppleWebKit/.test(ua);
+                  var isChromeOrCriOS = /Chrome|CriOS|Edg/.test(ua);
+                  var isSafari = isAppleWebKit && !isChromeOrCriOS;
+                  if (isSafari) {
+                    document.documentElement.classList.add('is-safari');
+                  }
+                  
+                  // Set theme
                   var saved = localStorage.getItem('weatherflow-theme');
                   var theme = (saved === 'light' || saved === 'dark')
                     ? saved

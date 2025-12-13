@@ -34,7 +34,12 @@ export function HeaderHeightVar({ children, className = "" }: HeaderHeightVarPro
   }, []);
 
   return (
-    <header ref={ref as any} className={className}>
+    <header 
+      ref={ref as any} 
+      className={className}
+      // Nuclear test: uncomment this to force visible header in Safari
+      // style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 2147483647, background: "red" }}
+    >
       {children}
     </header>
   );
