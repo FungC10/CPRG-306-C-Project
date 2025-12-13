@@ -170,6 +170,40 @@ a:focus {
   text-decoration: underline;
 }
 
+/* Safari sticky positioning fix */
+.safari-sticky-fix {
+  position: -webkit-sticky;
+  position: sticky;
+  isolation: isolate;
+  /* Ensure proper stacking context for Safari */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  /* Force hardware acceleration */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Base background for Safari - more opaque to ensure visibility */
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.dark .safari-sticky-fix {
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+/* Apply backdrop-filter only when well-supported */
+@supports (backdrop-filter: blur(1px)) {
+  .safari-sticky-fix {
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    /* Keep background for browsers that support backdrop-filter but may have rendering issues */
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+  
+  .dark .safari-sticky-fix {
+    background-color: rgba(15, 23, 42, 0.85);
+  }
+}
+
 /* Leaflet popup link styling */
 .leaflet-popup-content a {
   color: rgb(8 145 178) !important; /* cyan-600 */

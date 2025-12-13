@@ -298,7 +298,7 @@ export default function Home() {
 
       <main className="relative z-10 min-h-screen" role="main">
         {/* Modern Header */}
-        <header className="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+        <header className="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm safari-sticky-fix">
           <div className="container mx-auto px-6 py-6">
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
               {/* Logo */}
