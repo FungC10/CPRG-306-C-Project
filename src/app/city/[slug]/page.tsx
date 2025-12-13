@@ -12,6 +12,7 @@ import { parseCityFromUrl } from '@/lib/cityUtils';
 import SearchBar from '@/components/SearchBar';
 import UnitToggle from '@/components/UnitToggle';
 import ThemeToggle from '@/components/ThemeToggle';
+import { HeaderHeightVar } from '@/components/HeaderHeightVar';
 import CurrentCard from '@/components/CurrentCard';
 import ForecastList from '@/components/ForecastList';
 import EmptyState from '@/components/EmptyState';
@@ -105,15 +106,15 @@ export default function CityPage({ params }: CityPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-all duration-500">
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - Removed transform to avoid Safari stacking issues */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 dark:bg-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       {/* Header - Matching main page structure */}
-      <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm safari-sticky-fix">
+      <HeaderHeightVar className="site-header sticky top-0 z-50 w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
             {/* Logo with back button */}
@@ -161,7 +162,7 @@ export default function CityPage({ params }: CityPageProps) {
             </div>
           </div>
         </div>
-      </header>
+      </HeaderHeightVar>
 
       <main className="relative z-10 min-h-screen" role="main">
         <div className="container mx-auto px-6 py-8 max-w-4xl">

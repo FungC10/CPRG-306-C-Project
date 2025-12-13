@@ -4,6 +4,7 @@ import { QueryProvider } from '@/lib/queryClient';
 import { LocaleProvider } from '@/lib/LocaleContext';
 import { ThemeProvider } from '@/lib/ThemeContext';
 import ServiceWorkerProvider from '@/components/ServiceWorkerProvider';
+import SafariFlagger from '@/components/SafariFlagger';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -59,6 +60,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <SafariFlagger />
         <ThemeProvider>
           <QueryProvider>
             <LocaleProvider>
