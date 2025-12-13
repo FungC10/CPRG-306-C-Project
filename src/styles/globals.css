@@ -170,10 +170,12 @@ a:focus {
   text-decoration: underline;
 }
 
-/* Safari sticky positioning fix */
+/* Safari sticky positioning fix - Aggressive approach for production Safari */
 .safari-sticky-fix {
-  position: -webkit-sticky;
-  position: sticky;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
   isolation: isolate;
   /* Ensure proper stacking context for Safari */
   transform: translateZ(0);
@@ -182,24 +184,29 @@ a:focus {
   /* Force hardware acceleration */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  /* Base background for Safari - more opaque to ensure visibility */
-  background-color: rgba(255, 255, 255, 0.95);
+  /* Very opaque background - Safari has issues with backdrop-blur and sticky */
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  /* Disable backdrop-blur as it causes header to disappear in Safari */
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
 }
 
 .dark .safari-sticky-fix {
-  background-color: rgba(15, 23, 42, 0.95);
+  background-color: rgba(15, 23, 42, 0.98) !important;
 }
 
-/* Apply backdrop-filter only when well-supported */
+/* Only apply backdrop-filter for browsers that handle it well (not Safari) */
 @supports (backdrop-filter: blur(1px)) {
-  .safari-sticky-fix {
+  /* Use a more specific selector to override Safari */
+  html:not(.safari) .safari-sticky-fix,
+  body:not(.safari) .safari-sticky-fix {
     -webkit-backdrop-filter: blur(24px);
     backdrop-filter: blur(24px);
-    /* Keep background for browsers that support backdrop-filter but may have rendering issues */
     background-color: rgba(255, 255, 255, 0.85);
   }
   
-  .dark .safari-sticky-fix {
+  html:not(.safari) .dark .safari-sticky-fix,
+  body:not(.safari) .dark .safari-sticky-fix {
     background-color: rgba(15, 23, 42, 0.85);
   }
 }
