@@ -105,16 +105,16 @@ export default function CityPage({ params }: CityPageProps) {
   else if (hasData) appState = 'success';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-all duration-500">
-      {/* Animated Background Elements - Removed transform to avoid Safari stacking issues */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-500">
+      {/* Animated Background Elements - Behind everything, disabled in Safari */}
+      <div className="bg-blobs fixed inset-0 pointer-events-none -z-10">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 dark:bg-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       {/* Header - Matching main page structure */}
-      <HeaderHeightVar className="site-header sticky top-0 z-50 w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+      <HeaderHeightVar className="site-header top-0 z-50 w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
             {/* Logo with back button */}
