@@ -297,9 +297,10 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Modern Header */}
-      <HeaderHeightVar className="site-header top-0 z-50 w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
-          <div className="container mx-auto px-6 py-6">
+        {/* Modern Header - Clean sticky wrapper, blur on inner div */}
+      <HeaderHeightVar className="site-header top-0 z-[9999] isolate">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+            <div className="container mx-auto px-6 py-6">
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
               {/* Logo */}
               <button
@@ -427,6 +428,7 @@ export default function Home() {
                 </div>
               </div>
             )}
+            </div>
           </div>
       </HeaderHeightVar>
 

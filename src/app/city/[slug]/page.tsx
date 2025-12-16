@@ -111,11 +111,12 @@ export default function CityPage({ params }: CityPageProps) {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 dark:bg-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+            </div>
 
-      {/* Header - Matching main page structure */}
-      <HeaderHeightVar className="site-header top-0 z-50 w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
-        <div className="container mx-auto px-6 py-6">
+      {/* Header - Matching main page structure - Clean sticky wrapper, blur on inner div */}
+      <HeaderHeightVar className="site-header top-0 z-[9999] isolate">
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+          <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
             {/* Logo with back button */}
             <button
@@ -136,7 +137,7 @@ export default function CityPage({ params }: CityPageProps) {
                     strokeWidth={2}
                     d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
                   />
-                </svg>
+              </svg>
               </div>
               <div className="text-left">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
@@ -148,11 +149,11 @@ export default function CityPage({ params }: CityPageProps) {
               </div>
             </button>
 
-            {/* Search and Controls */}
+          {/* Search and Controls */}
             <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 w-full lg:w-auto">
               <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3 w-full lg:w-auto">
                 <div className="w-full sm:w-80">
-                  <SearchBar onCitySelect={() => {}} disabled />
+              <SearchBar onCitySelect={() => {}} disabled />
                 </div>
                 <div className="flex items-center space-x-3">
                   <UnitToggle onChange={handleUnitsChange} />
@@ -161,6 +162,7 @@ export default function CityPage({ params }: CityPageProps) {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </HeaderHeightVar>
 
@@ -226,7 +228,7 @@ export default function CityPage({ params }: CityPageProps) {
             </div>
           </div>
         )}
-        </div>
+      </div>
       </main>
     </div>
   );

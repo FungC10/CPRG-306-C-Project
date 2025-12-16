@@ -170,35 +170,21 @@ a:focus {
   text-decoration: underline;
 }
 
-/* Base header: sticky for all browsers */
+/* Base header: Clean sticky wrapper (no blur/filter on sticky element itself) */
 .site-header {
   position: sticky;
   top: 0;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  background-color: rgba(255, 255, 255, 0.85);
+  /* NO backdrop-filter or filter on sticky element - Safari requirement */
+  /* Blur is on inner div, not here */
 }
 
-.dark .site-header {
-  background-color: rgba(15, 23, 42, 0.85);
-}
-
-/* Safari: Use fixed positioning and disable backdrop-blur */
+/* Safari: Use fixed positioning (guaranteed fallback) */
 html.is-safari .site-header {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   z-index: 2147483647 !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  background-color: rgba(255, 255, 255, 0.98) !important;
-  background: rgba(255, 255, 255, 0.98) !important;
-}
-
-html.is-safari.dark .site-header {
-  background-color: rgba(15, 23, 42, 0.98) !important;
-  background: rgba(15, 23, 42, 0.98) !important;
 }
 
 /* When header is fixed in Safari, push content down */
@@ -211,14 +197,11 @@ html.is-safari .bg-blobs {
   display: none !important;
 }
 
-/* Base header styles - Remove any transform/filter to avoid stacking context issues */
+/* Ensure header has no transform/filter on sticky element (Safari requirement) */
 .site-header {
-  /* Remove transform that could break sticky in Safari */
   transform: none !important;
   -webkit-transform: none !important;
   will-change: auto !important;
-  /* Ensure proper z-index */
-  z-index: 50;
 }
 
 /* Fix Safari hover issues on disabled buttons */
